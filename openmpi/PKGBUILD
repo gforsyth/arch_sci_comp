@@ -33,7 +33,6 @@ build() {
                --with-hwloc=/usr \
                --with-libltdl=/usr \
                --with-cuda=/opt/cuda \
-               --with-cuda-libdir=/opt/cuda/lib64  \
                FC=/usr/bin/gfortran \
                LDFLAGS="$LDFLAGS -Wl,-z,noexecstack"
 
