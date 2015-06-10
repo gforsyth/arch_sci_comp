@@ -6,3 +6,4 @@ YMMV.
 Currently there are (hopefully) working PKGBUILDS for use with Arch Linux for:
 
 * openmpi with CUDA support
+* hwloc with CUDA support
