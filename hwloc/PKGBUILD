@@ -1,0 +1,37 @@
+# $Id: PKGBUILD 230748 2015-02-04 15:36:41Z anatolik $
+# Maintainer : Stéphane Gaudreault <stephane@archlinux.org>
+# Contributor: Sylvain HENRY <hsyl20@yahoo.fr>
+# Contributor: Hervé YVIQUEL <elldekaa@gmail.com>
+
+pkgname=hwloc
+pkgver=1.10.1
+pkgrel=1
+pkgdesc="Portable Hardware Locality is a portable abstraction of hierarchical architectures"
+arch=('i686' 'x86_64')
+url="http://www.open-mpi.org/projects/hwloc/"
+license=('BSD')
+depends=('sh' 'pciutils' 'cairo' 'libxml2')
+options=('!docs')
+source=(http://www.open-mpi.org/software/hwloc/v1.10/downloads/${pkgname}-${pkgver}.tar.bz2)
+sha1sums=('76291124e4638b2fbd4deb4cc3cd680e153077b5')
+
+build() {
+   cd ${pkgname}-${pkgver}
+   ./configure --prefix=/usr \
+	   		   CFLAGS="-O2 -I/opt/cuda/include" \
+			   CXXFLAGS="-O2 -I/opt/cuda/include" \
+			   LDFLAGS=-L/opt/cuda/lib64
+   make
+}
+
+check() {
+   cd ${pkgname}-${pkgver}
+   make check
+}
+
+package() {
+   cd ${pkgname}-${pkgver}
+   make DESTDIR="${pkgdir}" install
+
+   install -Dm644 COPYING "${pkgdir}"/usr/share/licenses/${pkgname}/LICENSE
+}
