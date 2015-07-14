@@ -24,15 +24,19 @@ build() {
                --sysconfdir=/etc/${pkgname} \
                --enable-mpi-fortran=all \
                --libdir=/usr/lib/${pkgname} \
-               --with-threads=posix \
+               --enable-heterogeneous \
+               --enable-wrapper-rpath \
+               --enable-cxx-exceptions \
+               --enable-mpi-thread-multiple \
                --enable-smp-locks \
-               --with-valgrind \
-               --enable-memchecker \
                --enable-pretty-print-stacktrace \
-               --without-slurm \
+               --with-valgrind \
+               --with-threads=posix \
                --with-hwloc=/usr \
                --with-libltdl=/usr \
                --with-cuda=/opt/cuda \
+			   CC=gcc \
+			   CXX=g++ \
                FC=/usr/bin/gfortran \
                LDFLAGS="$LDFLAGS -Wl,-z,noexecstack"
 
